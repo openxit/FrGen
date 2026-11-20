@@ -110,7 +110,7 @@ public sealed class DriverManager
     {
         var release = await GetLatestReleaseAsync(ct).ConfigureAwait(false)
             ?? throw new InvalidOperationException(
-                $"Kein passendes Treiber-Paket ({Win64AssetName}) im neuesten GitHub Release von {_repoOwner}/{_repoName} gefunden.");
+                $"No matching driver package ({Win64AssetName}) found in the latest GitHub Release of {_repoOwner}/{_repoName}.");
 
         Directory.CreateDirectory(_installDir);
         string tempZip = Path.Combine(Path.GetTempPath(), $"openframegen-driver-{Guid.NewGuid():N}.zip");

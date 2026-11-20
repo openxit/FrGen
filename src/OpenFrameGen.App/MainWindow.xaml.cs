@@ -69,13 +69,13 @@ public partial class MainWindow : Window
     private void MainWindow_Loaded(object sender, RoutedEventArgs e)
     {
         _engine.TelemetryUpdated += OnTelemetryUpdated;
-        _engine.EngineError += msg => Dispatcher.Invoke(() => FooterStatusText.Text = $"Hinweis: {msg}");
+        _engine.EngineError += msg => Dispatcher.Invoke(() => FooterStatusText.Text = $"Note: {msg}");
         _engine.Initialize();
 
         GpuInfoText.Text = $"GPU: {_engine.AdapterName}";
         FooterStatusText.Text = _engine.ShadersCompiled
-            ? "Bereit · HLSL Optical-Flow Compute Shader kompiliert"
-            : "Bereit · Software-Fallback";
+            ? "Ready · HLSL Optical-Flow Compute Shaders compiled"
+            : "Ready · Software fallback";
 
         RefreshWindows();
         RefreshDriverStatus();
@@ -111,13 +111,13 @@ public partial class MainWindow : Window
         DriverPathText.Text = status.InstallDirectory;
         if (status.IsInstalled)
         {
-            string reg = status.IsVulkanLayerRegistered ? "Vulkan Layer aktiv" : "Nicht registriert";
-            DriverStatusText.Text = $"Installiert ({status.InstalledVersion}) · {reg}";
+            string reg = status.IsVulkanLayerRegistered ? "Vulkan Layer active" : "Not registered";
+            DriverStatusText.Text = $"Installed ({status.InstalledVersion}) · {reg}";
             UninstallDriverBtn.IsEnabled = true;
         }
         else
         {
-            DriverStatusText.Text = "Status: Nicht installiert (D3D11 Capture aktiv)";
+            DriverStatusText.Text = "Status: Not installed (D3D11 Capture active)";
             UninstallDriverBtn.IsEnabled = false;
         }
     }
@@ -129,16 +129,16 @@ public partial class MainWindow : Window
         if (_engine.IsRunning)
         {
             _engine.Stop();
-            ToggleBtn.Content = "Frame-Gen starten (Ctrl+Alt+F)";
-            FooterStatusText.Text = "Gestoppt · Passthrough";
+            ToggleBtn.Content = "Start Frame-Gen (Ctrl+Alt+F)";
+            FooterStatusText.Text = "Stopped · Passthrough";
         }
         else
         {
             nint hwnd = (WindowCombo.SelectedItem as TargetWindowInfo)?.Handle ?? nint.Zero;
             ReadSettingsFromUi();
             _engine.Start(hwnd, _settings);
-            ToggleBtn.Content = "Frame-Gen stoppen (Ctrl+Alt+F)";
-            FooterStatusText.Text = $"Aktiv · {(int)_settings.Multiplier}x Optical Flow";
+            ToggleBtn.Content = "Stop Frame-Gen (Ctrl+Alt+F)";
+            FooterStatusText.Text = $"Active · {(int)_settings.Multiplier}x Optical Flow";
         }
     }
 
@@ -161,7 +161,7 @@ public partial class MainWindow : Window
     private void OpacitySlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
     {
         if (OpacityLabel is not null)
-            OpacityLabel.Text = $"Transparenz ({Math.Round(e.NewValue * 100):0}%)";
+            OpacityLabel.Text = $"Opacity ({Math.Round(e.NewValue * 100):0}%)";
         if (!_isUiReady)
             return;
         ReadSettingsFromUi();
@@ -232,18 +232,18 @@ public partial class MainWindow : Window
         UninstallDriverBtn.IsEnabled = false;
         DriverProgress.Visibility = Visibility.Visible;
         DriverProgress.Value = 0;
-        DriverStatusText.Text = "Lade Treiber-Paket von GitHub...";
+        DriverStatusText.Text = "Downloading driver package from GitHub...";
 
         try
         {
             var progress = new Progress<double>(p => DriverProgress.Value = p);
             await _driverManager.InstallOrUpdateAsync(progress);
-            FooterStatusText.Text = "Vulkan Treiber-Layer erfolgreich installiert.";
+            FooterStatusText.Text = "Vulkan driver layer installed successfully.";
         }
         catch (Exception ex)
         {
-            DriverStatusText.Text = $"Fehler: {ex.Message}";
-            FooterStatusText.Text = "Treiber-Download fehlgeschlagen.";
+            DriverStatusText.Text = $"Error: {ex.Message}";
+            FooterStatusText.Text = "Driver download failed.";
         }
         finally
         {
@@ -258,11 +258,11 @@ public partial class MainWindow : Window
         try
         {
             _driverManager.Uninstall();
-            FooterStatusText.Text = "Vulkan Treiber-Layer entfernt.";
+            FooterStatusText.Text = "Vulkan driver layer uninstalled.";
         }
         catch (Exception ex)
         {
-            FooterStatusText.Text = $"Fehler beim Entfernen: {ex.Message}";
+            FooterStatusText.Text = $"Uninstall error: {ex.Message}";
         }
         RefreshDriverStatus();
     }

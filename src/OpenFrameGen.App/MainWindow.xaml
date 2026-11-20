@@ -43,7 +43,7 @@
                     </Border>
                 </StackPanel>
                 <TextBlock x:Name="GpuInfoText"
-                           Text="GPU: Initialisiere Direct3D 11..."
+                           Text="GPU: Initializing Direct3D 11..."
                            FontSize="12"
                            Foreground="#8C96A8"
                            Margin="0,3,0,0" />
@@ -52,7 +52,7 @@
             <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
                 <Button x:Name="ToggleBtn"
                         Style="{StaticResource PrimaryButton}"
-                        Content="Frame-Gen starten (Ctrl+Alt+F)"
+                        Content="Start Frame-Gen (Ctrl+Alt+F)"
                         Click="ToggleBtn_Click"
                         MinWidth="210" />
             </StackPanel>
@@ -76,14 +76,14 @@
                         Padding="14"
                         Margin="0,0,0,12">
                     <StackPanel>
-                        <TextBlock Text="FRAME-GENERATION &amp; ZIELFENSTER"
+                        <TextBlock Text="FRAME GENERATION &amp; TARGET WINDOW"
                                    FontFamily="Consolas"
                                    FontSize="11"
                                    FontWeight="Bold"
                                    Foreground="#8C96A8"
                                    Margin="0,0,0,10" />
 
-                        <TextBlock Text="Zielfenster / Spiel" FontSize="12" Foreground="#CBD5E1" Margin="0,0,0,4" />
+                        <TextBlock Text="Target Window / Game" FontSize="12" Foreground="#CBD5E1" Margin="0,0,0,4" />
                         <Grid Margin="0,0,0,12">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
@@ -97,7 +97,7 @@
                                       BorderBrush="#2A3140" />
                             <Button Grid.Column="2"
                                     Style="{StaticResource FlatButton}"
-                                    Content="Aktualisieren"
+                                    Content="Refresh"
                                     Padding="10,6"
                                     Click="RefreshWindows_Click" />
                         </Grid>
@@ -109,17 +109,17 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0">
-                                <TextBlock Text="Multiplikator" FontSize="12" Foreground="#CBD5E1" Margin="0,0,0,4" />
+                                <TextBlock Text="Multiplier" FontSize="12" Foreground="#CBD5E1" Margin="0,0,0,4" />
                                 <ComboBox x:Name="MultiplierCombo"
                                           Height="30"
                                           SelectionChanged="SettingsChanged">
                                     <ComboBoxItem Content="Off (Passthrough)" Tag="1" />
-                                    <ComboBoxItem Content="2x (Doppelte FPS)" Tag="2" IsSelected="True" />
-                                    <ComboBoxItem Content="3x (Dreifache FPS)" Tag="3" />
+                                    <ComboBoxItem Content="2x (Double FPS)" Tag="2" IsSelected="True" />
+                                    <ComboBoxItem Content="3x (Triple FPS)" Tag="3" />
                                 </ComboBox>
                             </StackPanel>
                             <StackPanel Grid.Column="2">
-                                <TextBlock Text="Optical Flow Qualität" FontSize="12" Foreground="#CBD5E1" Margin="0,0,0,4" />
+                                <TextBlock Text="Optical Flow Quality" FontSize="12" Foreground="#CBD5E1" Margin="0,0,0,4" />
                                 <ComboBox x:Name="QualityCombo"
                                           Height="30"
                                           SelectionChanged="SettingsChanged">
@@ -130,11 +130,11 @@
                             </StackPanel>
                         </Grid>
 
-                        <TextBlock Text="Upscaling / Nachschärfung" FontSize="12" Foreground="#CBD5E1" Margin="0,0,0,4" />
+                        <TextBlock Text="Upscaling / Sharpening" FontSize="12" Foreground="#CBD5E1" Margin="0,0,0,4" />
                         <ComboBox x:Name="UpscaleCombo"
                                   Height="30"
                                   SelectionChanged="SettingsChanged">
-                            <ComboBoxItem Content="Off (Nativ)" Tag="Off" />
+                            <ComboBoxItem Content="Off (Native)" Tag="Off" />
                             <ComboBoxItem Content="Sharp CAS (Contrast Adaptive)" Tag="SharpCas" IsSelected="True" />
                         </ComboBox>
                     </StackPanel>
@@ -148,14 +148,14 @@
                         Padding="14">
                     <StackPanel>
                         <Grid Margin="0,0,0,10">
-                            <TextBlock Text="IN-GAME OVERLAY (KLICK-DURCHLÄSSIG)"
+                            <TextBlock Text="IN-GAME OVERLAY (CLICK-THROUGH)"
                                        FontFamily="Consolas"
                                        FontSize="11"
                                        FontWeight="Bold"
                                        Foreground="#8C96A8"
                                        VerticalAlignment="Center" />
                             <CheckBox x:Name="OverlayCheck"
-                                      Content="Aktiv (Ctrl+Alt+O)"
+                                      Content="Enabled (Ctrl+Alt+O)"
                                       Foreground="#E6EAF2"
                                       IsChecked="True"
                                       HorizontalAlignment="Right"
@@ -174,15 +174,15 @@
                                 <ComboBox x:Name="OverlayCornerCombo"
                                           Height="30"
                                           SelectionChanged="OverlayConfigChanged">
-                                    <ComboBoxItem Content="Oben Links" Tag="TopLeft" IsSelected="True" />
-                                    <ComboBoxItem Content="Oben Rechts" Tag="TopRight" />
-                                    <ComboBoxItem Content="Unten Links" Tag="BottomLeft" />
-                                    <ComboBoxItem Content="Unten Rechts" Tag="BottomRight" />
+                                    <ComboBoxItem Content="Top Left" Tag="TopLeft" IsSelected="True" />
+                                    <ComboBoxItem Content="Top Right" Tag="TopRight" />
+                                    <ComboBoxItem Content="Bottom Left" Tag="BottomLeft" />
+                                    <ComboBoxItem Content="Bottom Right" Tag="BottomRight" />
                                 </ComboBox>
                             </StackPanel>
                             <StackPanel Grid.Column="2">
                                 <TextBlock x:Name="OpacityLabel"
-                                           Text="Transparenz (86%)"
+                                           Text="Opacity (86%)"
                                            FontSize="12"
                                            Foreground="#CBD5E1"
                                            Margin="0,0,0,8" />
@@ -207,7 +207,7 @@
                         Padding="14"
                         Margin="0,0,0,12">
                     <StackPanel>
-                        <TextBlock Text="LIVE TELEMETRIE"
+                        <TextBlock Text="LIVE TELEMETRY"
                                    FontFamily="Consolas"
                                    FontSize="11"
                                    FontWeight="Bold"
@@ -220,7 +220,7 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <StackPanel>
-                                <TextBlock Text="OHNE FG (REAL)" FontFamily="Consolas" FontSize="10" Foreground="#6E7889" />
+                                <TextBlock Text="BASE (NO FG)" FontFamily="Consolas" FontSize="10" Foreground="#6E7889" />
                                 <TextBlock x:Name="BaseFpsLabel"
                                            Text="0.0 FPS"
                                            FontFamily="Consolas"
@@ -229,7 +229,7 @@
                                            Foreground="#93C5FD" />
                             </StackPanel>
                             <StackPanel Grid.Column="1">
-                                <TextBlock Text="AKTUELL (OUTPUT)" FontFamily="Consolas" FontSize="10" Foreground="#6E7889" />
+                                <TextBlock Text="OUTPUT (WITH FG)" FontFamily="Consolas" FontSize="10" Foreground="#6E7889" />
                                 <TextBlock x:Name="TotalFpsLabel"
                                            Text="0.0 FPS"
                                            FontFamily="Consolas"
@@ -242,7 +242,7 @@
                         <Border Height="1" Background="#242A36" Margin="0,2,0,8" />
 
                         <Grid Margin="0,0,0,4">
-                            <TextBlock Text="Real / Generiert:" FontSize="12" Foreground="#8C96A8" />
+                            <TextBlock Text="Real / Generated:" FontSize="12" Foreground="#8C96A8" />
                             <TextBlock x:Name="RealGenLabel"
                                        Text="0.0 Real · 0.0 Gen"
                                        FontFamily="Consolas"
@@ -269,13 +269,13 @@
                         CornerRadius="6"
                         Padding="14">
                     <StackPanel>
-                        <TextBlock Text="VULKAN / DXGI TREIBER-LAYER"
+                        <TextBlock Text="VULKAN / DXGI DRIVER LAYER"
                                    FontFamily="Consolas"
                                    FontSize="11"
                                    FontWeight="Bold"
                                    Foreground="#8C96A8"
                                    Margin="0,0,0,6" />
-                        <TextBlock Text="Lädt den nativen C++ Vulkan Implicit Layer direkt aus dem GitHub Release (openxit/FrGen), damit die .exe klein bleibt."
+                        <TextBlock Text="Downloads the native C++ Vulkan Implicit Layer from GitHub Releases (openxit/FrGen) to keep the .exe lightweight."
                                    FontSize="11.5"
                                    Foreground="#8C96A8"
                                    TextWrapping="Wrap"
@@ -289,7 +289,7 @@
                                 Margin="0,0,0,10">
                             <StackPanel>
                                 <TextBlock x:Name="DriverStatusText"
-                                           Text="Status: Nicht installiert"
+                                           Text="Status: Not installed"
                                            FontFamily="Consolas"
                                            FontSize="11.5"
                                            Foreground="#CBD5E1" />
@@ -313,12 +313,12 @@
 
                         <Button x:Name="InstallDriverBtn"
                                 Style="{StaticResource FlatButton}"
-                                Content="Treiber von GitHub installieren"
+                                Content="Install Driver from GitHub"
                                 Click="InstallDriverBtn_Click"
                                 Margin="0,0,0,6" />
                         <Button x:Name="UninstallDriverBtn"
                                 Style="{StaticResource FlatButton}"
-                                Content="Treiber entfernen"
+                                Content="Uninstall Driver"
                                 Click="UninstallDriverBtn_Click" />
                     </StackPanel>
                 </Border>
@@ -328,7 +328,7 @@
         <!-- Footer -->
         <Grid Grid.Row="2" Margin="0,12,0,0">
             <TextBlock x:Name="FooterStatusText"
-                       Text="Bereit · Shader Status: Wird geprüft..."
+                       Text="Ready · Checking shader status..."
                        FontFamily="Consolas"
                        FontSize="11"
                        Foreground="#6E7889"
