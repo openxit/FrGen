@@ -4,7 +4,12 @@ project(OpenFrameGenVulkanLayer VERSION 0.1.0 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Vulkan REQUIRED)
+set(VULKAN_HEADERS_DIR "" CACHE PATH "Optional path to Vulkan-Headers/include")
+if (VULKAN_HEADERS_DIR)
+    set(Vulkan_INCLUDE_DIRS "${VULKAN_HEADERS_DIR}")
+else()
+    find_package(Vulkan REQUIRED)
+endif()
 
 add_library(VK_LAYER_OPEN_FRAMEGEN SHARED
     src/open_framegen_layer.cpp
