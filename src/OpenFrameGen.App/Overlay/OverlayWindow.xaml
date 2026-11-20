@@ -1,7 +1,7 @@
 <Window x:Class="OpenFrameGen.App.Overlay.OverlayWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Open-FrameGen Overlay"
+        Title="FrGen Overlay"
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
@@ -23,7 +23,7 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="OPEN-FRAMEGEN"
+                <TextBlock Text="FRGEN"
                            FontFamily="Consolas"
                            FontSize="10"
                            FontWeight="Bold"

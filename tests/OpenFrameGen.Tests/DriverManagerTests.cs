@@ -14,13 +14,13 @@ public sealed class DriverManagerTests
           "tag_name": "v0.1.0",
           "assets": [
             {
-              "name": "OpenFrameGen.exe",
-              "browser_download_url": "https://example.com/OpenFrameGen.exe",
+              "name": "FrGen.exe",
+              "browser_download_url": "https://example.com/FrGen.exe",
               "size": 12345
             },
             {
-              "name": "open-framegen-driver-win64.zip",
-              "browser_download_url": "https://example.com/open-framegen-driver-win64.zip",
+              "name": "frgen-driver-win64.zip",
+              "browser_download_url": "https://example.com/frgen-driver-win64.zip",
               "size": 54321
             }
           ]
@@ -32,8 +32,8 @@ public sealed class DriverManagerTests
 
         Assert.NotNull(info);
         Assert.Equal("v0.1.0", info!.TagName);
-        Assert.Equal("open-framegen-driver-win64.zip", info.AssetName);
-        Assert.Equal("https://example.com/open-framegen-driver-win64.zip", info.DownloadUrl);
+        Assert.Equal("frgen-driver-win64.zip", info.AssetName);
+        Assert.Equal("https://example.com/frgen-driver-win64.zip", info.DownloadUrl);
         Assert.Equal(54321, info.SizeBytes);
     }
 

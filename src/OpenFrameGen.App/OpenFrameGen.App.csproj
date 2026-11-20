@@ -7,9 +7,9 @@
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
-    <AssemblyName>OpenFrameGen</AssemblyName>
+    <AssemblyName>FrGen</AssemblyName>
     <RootNamespace>OpenFrameGen.App</RootNamespace>
-    <ApplicationTitle>Open-FrameGen</ApplicationTitle>
+    <ApplicationTitle>FrGen</ApplicationTitle>
     <Version>0.1.0</Version>
   </PropertyGroup>
 

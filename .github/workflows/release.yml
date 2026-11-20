@@ -23,7 +23,7 @@ jobs:
       - name: Restore & Test
         run: dotnet test OpenFrameGen.sln -c Release
 
-      - name: Publish OpenFrameGen.exe (Single-File Framework-Dependent)
+      - name: Publish FrGen.exe (Single-File Framework-Dependent)
         run: |
           dotnet publish src/OpenFrameGen.App/OpenFrameGen.App.csproj `
             -c Release `
@@ -35,7 +35,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: app-win64
-          path: artifacts/app/OpenFrameGen.exe
+          path: artifacts/app/FrGen.exe
 
   build-driver-win64:
     runs-on: windows-latest
@@ -52,12 +52,12 @@ jobs:
           cmake --install driver/vulkan-layer/build --config Release --prefix artifacts/driver-win64
 
       - name: Package Driver Zip
-        run: Compress-Archive -Path artifacts/driver-win64/* -DestinationPath artifacts/open-framegen-driver-win64.zip
+        run: Compress-Archive -Path artifacts/driver-win64/* -DestinationPath artifacts/frgen-driver-win64.zip
 
       - uses: actions/upload-artifact@v4
         with:
           name: driver-win64
-          path: artifacts/open-framegen-driver-win64.zip
+          path: artifacts/frgen-driver-win64.zip
 
   build-driver-linux64:
     runs-on: ubuntu-latest
@@ -72,12 +72,12 @@ jobs:
           cmake -S driver/vulkan-layer -B driver/vulkan-layer/build -G Ninja -DCMAKE_BUILD_TYPE=Release
           cmake --build driver/vulkan-layer/build
           cmake --install driver/vulkan-layer/build --prefix artifacts/driver-linux64
-          tar -czf artifacts/open-framegen-driver-linux64.tar.gz -C artifacts/driver-linux64 .
+          tar -czf artifacts/frgen-driver-linux64.tar.gz -C artifacts/driver-linux64 .
 
       - uses: actions/upload-artifact@v4
         with:
           name: driver-linux64
-          path: artifacts/open-framegen-driver-linux64.tar.gz
+          path: artifacts/frgen-driver-linux64.tar.gz
 
   release:
     needs: [build-app, build-driver-win64, build-driver-linux64]
@@ -94,6 +94,6 @@ jobs:
           tag_name: ${{ github.ref_name == 'main' && 'v0.1.0' || github.ref_name }}
           generate_release_notes: true
           files: |
-            release-assets/OpenFrameGen.exe
-            release-assets/open-framegen-driver-win64.zip
-            release-assets/open-framegen-driver-linux64.tar.gz
+            release-assets/FrGen.exe
+            release-assets/frgen-driver-win64.zip
+            release-assets/frgen-driver-linux64.tar.gz

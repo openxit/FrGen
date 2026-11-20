@@ -22,8 +22,8 @@ public sealed class DriverManager
 {
     public const string DefaultRepoOwner = "openxit";
     public const string DefaultRepoName = "FrGen";
-    public const string Win64AssetName = "open-framegen-driver-win64.zip";
-    public const string VulkanLayerManifestName = "OpenFrameGen_layer.json";
+    public const string Win64AssetName = "frgen-driver-win64.zip";
+    public const string VulkanLayerManifestName = "FrGen_layer.json";
     public const string VulkanImplicitLayersKey = @"SOFTWARE\Khronos\Vulkan\ImplicitLayers";
 
     private readonly HttpClient _http;
@@ -40,7 +40,7 @@ public sealed class DriverManager
         _http = httpClient ?? CreateDefaultHttpClient();
         _installDir = installDirectory ?? Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            "OpenFrameGen",
+            "FrGen",
             "driver");
         _repoOwner = repoOwner;
         _repoName = repoName;
@@ -182,21 +182,21 @@ public sealed class DriverManager
 
     private void EnsureManifestLibraryPath()
     {
-        string dllPath = Path.Combine(_installDir, "VK_LAYER_OPEN_FRAMEGEN.dll");
+        string dllPath = Path.Combine(_installDir, "VK_LAYER_FRGEN.dll");
         if (!File.Exists(ManifestPath) || !File.Exists(dllPath))
             return;
 
         string json = File.ReadAllText(ManifestPath);
         string normalizedDll = dllPath.Replace("\\", "\\\\");
-        json = json.Replace("./VK_LAYER_OPEN_FRAMEGEN.dll", normalizedDll)
-                   .Replace(".\\VK_LAYER_OPEN_FRAMEGEN.dll", normalizedDll);
+        json = json.Replace("./VK_LAYER_FRGEN.dll", normalizedDll)
+                   .Replace(".\\VK_LAYER_FRGEN.dll", normalizedDll);
         File.WriteAllText(ManifestPath, json);
     }
 
     private static HttpClient CreateDefaultHttpClient()
     {
         var client = new HttpClient { Timeout = TimeSpan.FromMinutes(3) };
-        client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("OpenFrameGen", "1.0"));
+        client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("FrGen", "1.0"));
         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/vnd.github+json"));
         return client;
     }
