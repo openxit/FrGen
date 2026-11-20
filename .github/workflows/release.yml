@@ -47,7 +47,7 @@ jobs:
 
       - name: Configure & Build Vulkan Layer (Win64)
         run: |
-          cmake -S driver/vulkan-layer -B driver/vulkan-layer/build -G "Visual Studio 17 2022" -A x64 -DVULKAN_HEADERS_DIR="$PWD/external/Vulkan-Headers/include"
+          cmake -S driver/vulkan-layer -B driver/vulkan-layer/build -A x64 -DVULKAN_HEADERS_DIR="$PWD/external/Vulkan-Headers/include"
           cmake --build driver/vulkan-layer/build --config Release
           cmake --install driver/vulkan-layer/build --config Release --prefix artifacts/driver-win64
 
