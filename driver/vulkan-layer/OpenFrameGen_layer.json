@@ -1,0 +1,19 @@
+{
+  "file_format_version": "1.1.2",
+  "layer": {
+    "name": "VK_LAYER_OPEN_FRAMEGEN",
+    "type": "GLOBAL",
+    "library_path": "./VK_LAYER_OPEN_FRAMEGEN.dll",
+    "api_version": "1.3.268",
+    "implementation_version": "1",
+    "description": "Open-FrameGen Universal Vulkan Optical-Flow & Frame Generation Layer",
+    "functions": {
+      "vkNegotiateLoaderLayerInterfaceVersion": "OpenFrameGen_NegotiateLoaderLayerInterfaceVersion",
+      "vkGetInstanceProcAddr": "OpenFrameGen_GetInstanceProcAddr",
+      "vkGetDeviceProcAddr": "OpenFrameGen_GetDeviceProcAddr"
+    },
+    "disable_environment": {
+      "DISABLE_OPEN_FRAMEGEN": "1"
+    }
+  }
+}
